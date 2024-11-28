@@ -30,6 +30,5 @@ def pregunta_12():
             result[key] += value_sum
         else:
             result[key] = value_sum
-    
-    return result
+    return dict(sorted(result.items()))
 pregunta_12()
