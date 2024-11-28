@@ -15,3 +15,23 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+def pregunta_12():
+    with open("files/input/data.csv", "r") as f:
+    #with open('data.csv', 'r') as f:
+        data = f.readlines()
+    
+    result = {}
+    
+    for line in data:
+        parts = line.strip().split("\t")
+        key = parts[0]
+        values = parts[4].split(",")
+        value_sum = sum(int(v.split(":")[1]) for v in values)
+        
+        if key in result:
+            result[key] += value_sum
+        else:
+            result[key] = value_sum
+    
+    return result
+pregunta_12()
