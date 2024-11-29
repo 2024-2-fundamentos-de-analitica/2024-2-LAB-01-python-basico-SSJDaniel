@@ -7,7 +7,24 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_09():
-    """
+    with open("files/input/data.csv", "r") as f:
+        data = f.readlines()
+
+    key_count = {}
+
+    for line in data:
+        parts = line.strip().split("\t")
+        dict_entries = parts[4].split(",")
+        for entry in dict_entries:
+            key, _ = entry.split(":")
+            if key in key_count:
+                key_count[key] += 1
+            else:
+                key_count[key] = 1
+
+    return key_count
+print(pregunta_09())
+"""
     Retorne un diccionario que contenga la cantidad de registros en que
     aparece cada clave de la columna 5.
 

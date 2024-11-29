@@ -7,7 +7,26 @@ utilizar pandas, numpy o scipy.
 
 
 def pregunta_06():
-    """
+    with open("files/input/data.csv", "r") as f:
+        data = f.readlines()
+
+    dictionary_values = {}
+
+    for line in data:
+        parts = line.strip().split("\t")
+        dict_entries = parts[4].split(",")
+        for entry in dict_entries:
+            key, value = entry.split(":")
+            value = int(value)
+            if key in dictionary_values:
+                dictionary_values[key].append(value)
+            else:
+                dictionary_values[key] = [value]
+
+    result = [(key, min(values), max(values)) for key, values in sorted(dictionary_values.items())]
+    return result
+print(pregunta_06())
+"""
     La columna 5 codifica un diccionario donde cada cadena de tres letras
     corresponde a una clave y el valor despues del caracter `:` corresponde al
     valor asociado a la clave. Por cada clave, obtenga el valor asociado mas
